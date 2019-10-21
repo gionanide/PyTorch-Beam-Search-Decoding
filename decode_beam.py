@@ -59,6 +59,10 @@ class BeamSearchNode(object):
         # Add here a function for shaping a reward
 
         return self.logp / float(self.leng - 1 + 1e-6) + alpha * reward
+    
+    ''' in the PriorityQueue(PQ) two elements have the same value then, the algorithm moves to the element itself. Because the element in the PQ is an object it generates this Error.'''
+    def __lt__(self, other):
+        return self.prob < other.prob  
 
 
 decoder = DecoderRNN()
